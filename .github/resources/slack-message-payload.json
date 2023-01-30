@@ -1,0 +1,20 @@
+{
+    "blocks": [{
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "Hey there"
+            }
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n GH actor: ${{ github.actor }},,,,,, GH Input: ${{ inputs.branch }}"
+            }
+        }
+    ]
+}

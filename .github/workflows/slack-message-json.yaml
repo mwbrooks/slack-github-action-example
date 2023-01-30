@@ -1,0 +1,24 @@
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'any name'     
+        default: 'test-branch'
+
+jobs:
+  new_push_job:
+    runs-on: ubuntu-latest
+    name: New push to repo
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.branch }}
+    - name: Send GitHub trigger payload to Slack Workflow Builder
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        channel-id: ${{ vars.SLACK_CHANNEL_ID }}
+        payload-file-path: ./.github/resources/slack-message-payload.json
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
