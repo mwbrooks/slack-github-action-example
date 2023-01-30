@@ -3,9 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Give the name of your branch'     
+        description: 'testing any name'
         default: 'master'
-
 
 jobs:
   new_push_job:
