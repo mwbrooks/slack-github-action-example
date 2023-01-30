@@ -1,0 +1,20 @@
+{
+    "blocks": [{
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "Hey there 👋 I'm TaskBot. I'm here to help you create and manage tasks in Slack.\nThere are two ways to quickly create tasks:"
+            }
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
+        }
+    ]
+}

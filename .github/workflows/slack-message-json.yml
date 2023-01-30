@@ -1,4 +1,11 @@
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Give the name of your branch'     
+        default: 'master'
+
 
 jobs:
   new_push_job:
@@ -9,36 +16,7 @@ jobs:
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
       with:
-        channel-id: 'C04M3TR13KJ'
-        payload: |
-          {
-            "blocks": [
-              { "type": "divider" },
-              {
-                "type": "image",
-                "title": {
-                  "type": "plain_text",
-                  "text": "Slack Slack Slack",
-                  "emoji": true
-                },
-                "image_url": "https://media.makeameme.org/created/a-slack-this.jpg",
-                "alt_text": "marg"
-              },
-              {
-                "type": "actions",
-                "elements": [
-                  {
-                    "type": "button",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "${{ github.sha }}"
-                    },
-                    "url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  }
-                ]
-              }
-            ],
-            "channel-id": "NEW_TARGET_CHANNEL_ID"
-          }
+        channel-id: ${{ vars.SLACK_CHANNEL_ID }}
+        payload-file-path: ./.github/resources/slack-message-payload.json
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
